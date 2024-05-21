@@ -7,7 +7,8 @@
 </head>
 <body>
     <h1>Login</h1>
-<form action="{% url 'user_login' %}" method="post" enctype="multipart/form-data">
+    {% comment %} enctype="multipart/form-data" {% endcomment %}
+<form action="{% url 'user_login' %}" method="post" > 
         {% csrf_token %}
     <label for="username">Username</label><br>
     <input type="text" placeholder="Username" id="username" name="username"><br>
