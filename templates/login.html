@@ -26,7 +26,6 @@
 
     <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}
-        {{ forms.as_p }}
         <button>Signup</button>
     </form>
 </body>
