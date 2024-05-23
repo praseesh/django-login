@@ -10,14 +10,14 @@
     <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}
         {{ forms.as_p }}
-        <label for="username">Username</label>
+        <label for="username">Username</label><br>
         <input type="text" id="username" placeholder="Username" name="username">
         <label for="email">Email address</label>
         <input type="text" id="email" placeholder="Email address" name="email">
         <label for="password">Password</label>
         <input type="text" id="password" placeholder="Password" name="password1">
         <label for="password">Re enter Password</label>
-        <input type="text" id="password" placeholder="Password" name="password2">
+        <input type="text" id="password" placeholder="Password" name="password2"><br>
         <button>Signup</button>
 
     </form>
