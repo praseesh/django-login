@@ -9,12 +9,15 @@
     <h1>Signup</h1>
     <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}
+        {{ forms.as_p }}
         <label for="username">Username</label>
         <input type="text" id="username" placeholder="Username" name="username">
         <label for="email">Email address</label>
         <input type="text" id="email" placeholder="Email address" name="email">
         <label for="password">Password</label>
-        <input type="text" id="password" placeholder="Password" name="password">
+        <input type="text" id="password" placeholder="Password" name="password1">
+        <label for="password">Re enter Password</label>
+        <input type="text" id="password" placeholder="Password" name="password2">
         <button>Signup</button>
 
     </form>
