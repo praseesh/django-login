@@ -68,7 +68,6 @@ def admin_login(request):
         else:
             msg = "Invalid username or password."
             return render(request, 'adminlogin.html', {'msg': msg})
-    
     return render(request, 'adminlogin.html')
 
 def admin_home(request):
