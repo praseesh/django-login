@@ -9,4 +9,5 @@ urlpatterns = [
     path('admin_login', views.admin_login, name="admin_login"),
     path('admin',views.admin_home,name='admin'),
     path('delete-user/<int:user_id>/', views.delete_user, name='delete_user'),
+    
 ]
