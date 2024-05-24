@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm
@@ -58,6 +59,8 @@ def logout(request):
 admin_username = 'admin'
 admin_password = '1234'
 def admin_login(request):
+    if 'username' in request.session:
+        return redirect('admin')
     if request.method == "POST":
         username = request.POST.get('admin1_username')
         password = request.POST.get('admin1_password')
@@ -71,10 +74,25 @@ def admin_login(request):
     return render(request, 'adminlogin.html')
 
 def admin_home(request):
-    if 'username' in request.session:
-        return redirect('admin')
-    if request.method=='POST':
+    if request.session is None:
+        return redirect('admin_login')
+    
+    if request.method=='GET':
         users = User.objects.all()
         if users is not None:
             return render(request, 'admin.html', {'users': users})
         return render(request,'admin.html', {'users': 'The requested user is Empty'})
+    
+def delete_user(request, user_id):
+    if request.method == 'DELETE':
+        try:
+            user = User.objects.get(id=user_id)
+            user.delete()
+            # Return a JSON response indicating success
+            return JsonResponse({'success': True})
+        except User.DoesNotExist:
+            # Return a JSON response indicating failure due to non-existent user
+            return JsonResponse({'success': False, 'error': 'User does not exist'})
+    else:
+        # Redirect to admin home if the request method is not DELETE
+        return redirect('admin_home')
