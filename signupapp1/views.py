@@ -7,7 +7,6 @@ from .forms import UserLoginForm
 
 User = get_user_model()
 
-
 def user_login(request):    
     if request.method == "POST":
         form = UserLoginForm(request.POST)
@@ -27,7 +26,6 @@ def user_login(request):
             return render(request, 'login.html', {'form': form, 'msg': msg})
     else:
         form = UserLoginForm()
-    
     return render(request, 'login.html', {'form': form})
 
 def signup(request):
@@ -39,6 +37,7 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
 def home(request):
     if request.user.is_authenticated :
         return render(request, 'home.html')
