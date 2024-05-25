@@ -102,8 +102,17 @@ def adminlogout(request):
         request.session.flush()
     return redirect('admin_login')
 
-def edit(request):
-    pass
+def edit(request,user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_home')
+    else:
+        form = CustomUserCreationForm(instance=user)
+    return render(request, 'edit_user.html', {'form': form, 'user': user})
+    
 
 def useradd(request):
     if 'username' in request.session:
