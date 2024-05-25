@@ -88,11 +88,8 @@ def delete_user(request, user_id):
         try:
             user = User.objects.get(id=user_id)
             user.delete()
-            # Return a JSON response indicating success
             return JsonResponse({'success': True})
         except User.DoesNotExist:
-            # Return a JSON response indicating failure due to non-existent user
             return JsonResponse({'success': False, 'error': 'User does not exist'})
     else:
-        # Redirect to admin home if the request method is not DELETE
         return redirect('admin_home')
