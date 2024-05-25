@@ -60,13 +60,13 @@ admin_username = 'admin'
 admin_password = '1234'
 def admin_login(request):
     if 'username' in request.session:
-        return redirect('admin_home')
+        return redirect('admin')
     if request.method == "POST":
         username = request.POST.get('admin1_username')
         password = request.POST.get('admin1_password')
         if username==admin_username and password==admin_password:
             request.session['username']=username 
-            return redirect('admin_home')
+            return redirect('admin')
         else:
             msg = "Invalid username or password."
             return render(request, 'adminlogin.html', {'msg': msg})
@@ -92,10 +92,10 @@ def delete_user(request, user_id):
         try:
             user = get_object_or_404(CustomUser, id=user_id)
             user.delete()
-            return redirect('admin_home') 
+            return redirect('admin') 
         except CustomUser.DoesNotExist:
             return JsonResponse({'success': False, 'error': 'User does not exist'})
-    return redirect('admin_home')
+    return redirect('admin')
     
 def adminlogout(request):
     if 'username' in request.session:
@@ -108,10 +108,10 @@ def edit(request,user_id):
         form = CustomUserCreationForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('admin_home')
+            return redirect('admin')
     else:
         form = CustomUserCreationForm(instance=user)
-    return render(request, 'edit_user.html', {'form': form, 'user': user})
+    return render(request, 'edit.html', {'form': form, 'user': user})
     
 
 def useradd(request):

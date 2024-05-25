@@ -4,13 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomePage</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #238636;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2ea043;
+        }
+        .card {
+            background-color: #161b22;
+            border-radius: 8px;
+            width: 300px; /* Adjusted width */
+            margin: 10px;
+            overflow: hidden;
+        }
+        .card-img-top {
+            width: 100%;
+            height: auto;
+        }
+        .card-body {
+            padding: 15px;
+            text-align: center; /* Centered text */
+        }
+        .card-text {
+            color: #c9d1d9;
+            font-size: 14px;
+        }
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #161b22; /* Optional: to match card color */
+        }
+        .header h1 {
+            margin: 0; /* Removes default margin */
+        }
+        .logout-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #79170e;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none; /* In case you change it to an anchor tag */
+        }
+        .logout-button:hover {
+            background-color: #a71f13;
+        }
+    </style>
 </head>
 <body>
-    <h1>HomePage</h1>
+    <div class="header">
+        <h1>The World's Friendliest Travel Community!</h1>
+        <form action="{% url 'logout' %}" method="post" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">Sign out</button>
+        </form>
+    </div>
 
-    <h1>Welcome to the Home Page</h1>
-    <form action="{% url 'logout' %}" name="logout">
-        <button type="submit">Sign out</button>
-    </form>
+    <div class="cards-container">
+        <!-- Card 1 -->
+        <div class="card">
+            <img src="https://images.pexels.com/photos/2499699/pexels-photo-2499699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top" alt="Travel Image">
+            <div class="card-body">
+                <p class="card-text">Hindsight is a wonderful thing. When we were mapping out our itinerary and booking accommodation, sailing out to Skellig Michael was an activity high on our list, if not top of our list. To facilitate that we decided to book three nights in Portmagee so we would be really close to where the boat departs from and we booked three nights thinking that if we couldn’t sail on the day we booked for, our first full day in Portmagee, didn’t in Portmagee.  Not ideal.</p>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="card">
+            <img src="https://images.pexels.com/photos/70365/forest-sunbeams-trees-sunlight-70365.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top" alt="Nature Image">
+            <div class="card-body">
+                <p class="card-text">Travel makes one modest. You see what a tiny place you occupy in the world. Our next city on this month-long tour of Spain was the capital city of Madrid. We traveled by train again, but this time we used a different company. We were able to try out one of the high-speed trains that operates here, Ouigo. They have double decker cars and for a 2 ¾ hour trip it only cost 28 euros (approx. $30) – Why can’t we have train service like this in the US? We really do. </p>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="card">
+            <img src="https://images.pexels.com/photos/4151510/pexels-photo-4151510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top" alt="Nature Image">
+            <div class="card-body">
+                <p class="card-text">Good morning from Congo! What a better time between two meetings to write about the past 18 months experience of being back to Asia! Yes, time flies...imagine, we moved to Bali already in September 2022! I always believe that you should spend a certain time in any place to feel home, and that you reach the best of the experience between the 18th month and 36th month. By that time you've made yourself really home. There is perhaps new discoveries,</p>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="card">
+            <img src="https://images.pexels.com/photos/2260038/pexels-photo-2260038.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top" alt="Nature Image">
+
+            <div class="card-body">
+                <p class="card-text">Today is supposed to be a great day, especially for Ketchikan where it rains something like 260 days per year! There was no rain in the forecast and the temperature was upper 50s. We woke up before 8am, got ready and went up for our usual breakfast. I took a couple of photos of the ship pulling into port, but they didn't turn out that well, because the window was dirty. We both got blueberry pancakes with By 10am and started wandering around.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

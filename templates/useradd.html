@@ -3,31 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+    <title>Admin User Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #161b22;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #79170e; /* Your specified button color */
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #a71f13; /* Your specified hover color */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            color: #f85149;
+        }
+        li {
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <h1>Admin User Signup</h1>
     <form action="{% url 'useradd' %}" method="post">
         {% csrf_token %}
         {{ forms.as_p }}
-        <label for="username">Username</label><br>
-        <input type="text" id="username" placeholder="Username" name="username"><br>
-        <label for="email">Email address</label><br>
-        <input type="text" id="email" placeholder="Email address" name="email"><br>
-        <label for="password">Password</label><br>
-        <input type="text" id="password" placeholder="Password" name="password1"><br>
-        <label for="password">Re enter Password</label><br>
-        <input type="text" id="password" placeholder="Password" name="password2"><br>
-        <button>Signup</button>
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Username" name="username">
+        <label for="email">Email address</label>
+        <input type="text" id="email" placeholder="Email address" name="email">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Password" name="password1">
+        <label for="password">Re-enter Password</label>
+        <input type="password" id="password" placeholder="Password" name="password2">
+        <button type="submit">Signup</button>
     </form>
     {% if msg %}
-    <ul>
-        {% for message in msg %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for message in msg %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
-    
 </body>
 </html>
-
+    
