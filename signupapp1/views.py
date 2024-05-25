@@ -111,10 +111,15 @@ def useradd(request):
             form = CustomUserCreationForm(request.POST)
             if form.is_valid():
                 form.save()  
-                return redirect('user_login')
+                return redirect('admin_login')
         else:
             form = CustomUserCreationForm()
-    return render(request, 'admin.html', {'form': form})    
+    return render(request, 'useradd.html', {'form': form})
+
+
+
+        
+ 
 
 
 
