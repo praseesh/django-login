@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'signupapp1.middleware.NoCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'signup.urls'

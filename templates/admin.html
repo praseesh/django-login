@@ -1,75 +1,100 @@
+{% comment %} <!DOCTYPE html>
+<html>
+  <head>
+    <title>User List</title>
+  </head>
+  <body>
+    <form action="{% url 'adminlogout' %}" method="post">
+      {% csrf_token %}
+      <button>LogOut</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Date Joined</th>
+          <th>Last Login</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.date_joined }}</td>
+            <td>{{ user.last_login }}</td>
+            <td>
+              <form action="{% url 'delete_user' user.id %}" method="delete" id="delete-form-{{ user.id }}">
+                {% csrf_token %}
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                <button type="submit">Delete</button>
+            </form>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6">No users found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <script>
+      function submitDeleteForm(userId) {
+        var form = document.getElementById('delete-form-' + userId)
+        form.submit()
+      }
+    </script>
+  </body>
+</html> {% endcomment %}
+<!-- templates/admin.html -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User List</title>
+    <title>User List</title>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Date Joined</th>
-        <th>Last Login</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for user in users %}
-        <tr>
-          <td>{{ user.id }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.date_joined }}</td>
-          <td>{{ user.last_login }}</td>
-          <td>
-            <form action="{% url 'delete_user' user.id %}" method="post">
-              {% csrf_token %}
-              <input type="submit" value="Delete" class="delete-btn" style="display:inline;">
-            </form>
-          </td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="6">No users found.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  
-<script>
-    // Pass the CSRF token to the template context
-    var csrfToken = '{{ csrf_token }}';
-
-    // Add an event listener to the delete buttons
-    document.addEventListener("DOMContentLoaded", function() {
-      const deleteBtns = document.querySelectorAll(".delete-btn");
-      deleteBtns.forEach(btn => {
-        btn.addEventListener("click", function(event) {
-          event.preventDefault(); // Prevent the default form submission
-          const userId = this.getAttribute("data-user-id");
-          // Send a DELETE request to the Django view
-          fetch(`/delete-user/${userId}`, {
-            method: "DELETE",
-            headers: {
-              "X-CSRFToken": csrfToken,
-              "Content-Type": "application/json"
-            }
-          })
-         .then(response => response.json())
-         .then(data => {
-            if (data.success) {
-              // Remove the table row from the DOM
-              this.closest('tr').remove();
-            } else {
-              alert("Error deleting user");
-            }
-          })
-         .catch(error => console.error(error));
-        });
-      });
-    });
-  </script>
+    <form action="{% url 'adminlogout' %}" method="post">
+        {% csrf_token %}
+        <button>LogOut</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Date Joined</th>
+                <th>Last Login</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.date_joined }}</td>
+                <td>{{ user.last_login }}</td>
+                <td>
+                    <form action="{% url 'delete_user' user.id %}" method="post" id="delete-form-{{ user.id }}">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No users found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
