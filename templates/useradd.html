@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Signup</title>
 </head>
 <body>
+    <h1>Signup</h1>
+    <form action="{% url 'useradd' %}" method="post">
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <label for="username">Username</label><br>
+        <input type="text" id="username" placeholder="Username" name="username"><br>
+        <label for="email">Email address</label><br>
+        <input type="text" id="email" placeholder="Email address" name="email"><br>
+        <label for="password">Password</label><br>
+        <input type="text" id="password" placeholder="Password" name="password1"><br>
+        <label for="password">Re enter Password</label><br>
+        <input type="text" id="password" placeholder="Password" name="password2"><br>
+        <button>Signup</button>
+    </form>
+    {% if msg %}
+    <ul>
+        {% for message in msg %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     
 </body>
 </html>
+

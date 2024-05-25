@@ -88,6 +88,11 @@
                         <button type="submit">Delete</button>
                     </form>
                 </td>
+                <td>
+                  <form action="{% url 'useradd' %}">
+                    <button type="submit">User Add</button>
+                  </form>
+                </td>
             </tr>
             {% empty %}
             <tr>
