@@ -90,7 +90,8 @@
 </head>
 <body>
     <div class="header">
-        <h1>The World's Friendliest Travel Community!</h1>
+        <h1>Hi {{ user.username }}</h1><br>
+        <h1>The World's Friendliest Travel Community!</h1><br>
         <form action="{% url 'logout' %}" method="post" class="logout-form">
             {% csrf_token %}
             <button type="submit" class="logout-button">Sign out</button>

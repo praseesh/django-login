@@ -9,6 +9,8 @@ from django.views.decorators.cache import never_cache
 from .models import CustomUser
 
 User = get_user_model()
+admin_username = 'admin'
+admin_password = '1234'
 def user_login(request):   
     if 'email' in request.session:
          return redirect('home')      
@@ -56,8 +58,7 @@ def logout(request):
         request.session.flush()
     return redirect('user_login')
 
-admin_username = 'admin'
-admin_password = '1234'
+
 def admin_login(request):
     if 'username' in request.session:
         return redirect('admin')
