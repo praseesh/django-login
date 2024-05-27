@@ -72,14 +72,6 @@ def admin_login(request):
             return render(request, 'adminlogin.html', {'msg': msg})
     return render(request, 'adminlogin.html')
 
-# def admin_home(request):
-#     if 'username' in request.session:
-#         if request.method=='GET':
-#             users = User.objects.all()
-#             if users is not None:
-#                 return render(request, 'admin.html', {'users': users})
-#             return render(request,'admin.html', {'users': 'The requested user is Empty'})
-#     return redirect('admin_login')
 def admin_home(request):
     if 'username' in request.session:
         if request.method == 'GET':
@@ -126,9 +118,9 @@ def useradd(request):
     return render(request, 'useradd.html', {'form': form})
 
 
-
-        
- 
-
+def user_search(request):
+    search_query = request.GET.get('search')
+    users = User.objects.filter(username__icontains=search_query) if search_query else User.objects.all()
+    return render(request, 'admin.html', {'users': users, 'search_query': search_query})
 
 

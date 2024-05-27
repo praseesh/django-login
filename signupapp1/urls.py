@@ -12,4 +12,5 @@ urlpatterns = [
     path('adminlogout', views.adminlogout, name="adminlogout"),
     path('useradd',views.useradd, name="useradd" ),
     path('edit/<int:user_id>/', views.edit, name='edit'),
+    path('search',views.user_search,name='search')
 ]
