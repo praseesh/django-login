@@ -74,6 +74,7 @@
                     {{ msg }}
                 </div>
             {% endif %}
+            
             <form action="{% url 'admin_login' %}" method="post">
                 {% csrf_token %}
                 <div class="form-outline mb-4">
