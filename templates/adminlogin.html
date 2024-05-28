@@ -66,7 +66,6 @@
     </style>
 </head>
 <body>
-    
     <div class="card">
         <div class="card-body">
             <h3 class="mb-5">Admin Login</h3>
@@ -75,7 +74,6 @@
                     {{ msg }}
                 </div>
             {% endif %}
-
             <form action="{% url 'admin_login' %}" method="post">
                 {% csrf_token %}
                 <div class="form-outline mb-4">
