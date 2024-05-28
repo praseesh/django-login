@@ -58,7 +58,6 @@ def logout(request):
         request.session.flush()
     return redirect('user_login')
 
-
 def admin_login(request):
     if 'username' in request.session:
         return redirect('admin')
@@ -79,7 +78,7 @@ def admin_home(request):
             users = CustomUser.objects.all()
             return render(request, 'admin.html', {'users': users})
     return redirect('admin_login')
-  
+
 def delete_user(request, user_id):
     if request.method == 'POST':  
         try:
@@ -106,7 +105,6 @@ def edit(request,user_id):
         form = CustomUserCreationForm(instance=user)
     return render(request, 'edit.html', {'form': form, 'user': user})
     
-
 def useradd(request):
     if 'username' in request.session:
         if request.method == 'POST':
@@ -117,7 +115,6 @@ def useradd(request):
         else:
             form = CustomUserCreationForm()
     return render(request, 'useradd.html', {'form': form})
-
 
 def user_search(request):
     search_query = request.GET.get('search')
