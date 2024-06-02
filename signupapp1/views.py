@@ -36,6 +36,7 @@ def user_login(request):
         form = UserLoginForm()
     return render(request, 'login.html', {'form': form})
 
+
 def signup(request):
     if 'email' in request.session:
         return redirect('home')
