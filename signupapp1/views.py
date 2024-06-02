@@ -13,8 +13,6 @@ admin_username = 'admin'
 admin_password = '1234'
 
 
-
-
 def user_login(request):   
     if 'email' in request.session:
          return redirect('home')      
