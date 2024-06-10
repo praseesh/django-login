@@ -1,4 +1,5 @@
-from django.http import JsonResponse
+
+ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm
@@ -12,6 +13,7 @@ User = get_user_model()
 admin_username = 'admin'
 admin_password = '1234'
 
+  
 
 def user_login(request):   
     if 'email' in request.session:
