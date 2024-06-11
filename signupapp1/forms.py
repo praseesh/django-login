@@ -10,6 +10,7 @@ class   CustomUserCreationForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')
         
         
+        
 class UserLoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
