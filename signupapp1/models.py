@@ -6,6 +6,8 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
 
+
+    
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     class Meta:
