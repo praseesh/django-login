@@ -32,6 +32,7 @@ def user_login(request):
             return render(request, 'login.html', {'form': form, 'msg': msg})
     else:
         form = UserLoginForm()
+        
     return render(request, 'login.html', {'form': form})
 
 def signup(request):
@@ -45,6 +46,7 @@ def signup(request):
             return redirect('user_login')
     else:
         form = CustomUserCreationForm()
+        
     return render(request, 'signup.html', {'form': form})
 
 def home(request):
