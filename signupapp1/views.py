@@ -7,7 +7,6 @@ from django.contrib.auth.hashers import check_password
 from .forms import UserLoginForm
 from django.views.decorators.cache import never_cache
 from .models import CustomUser
-
 User = get_user_model()
 admin_username = 'admin'
 admin_password = '1234'
