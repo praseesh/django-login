@@ -116,6 +116,7 @@ def useradd(request):
                 return redirect('admin_login')
         else:
             form = CustomUserCreationForm()
+            
     return render(request, 'useradd.html', {'form': form})
 
 def user_search(request):
