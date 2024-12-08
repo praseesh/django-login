@@ -53,7 +53,6 @@ def signup(request):
 def home(request):
     if 'email' in request.session and request.user.is_authenticated :
         return render(request, 'home.html')
-    
     return redirect('user_login')
 
 def logout(request):
